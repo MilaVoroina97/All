@@ -26,74 +26,74 @@
 
 //Задайте двумерный массив. Напишите программу, которая заменяет строки на столбцы.
 // В случае, если это невозможно, программа должна вывести сообщение для пользователя.
-// Console.WriteLine("Введите число m для определения кол-ва строк двумерного массива: ");
-// int m = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Введите число n для определения кол-ва столбцов двумерного массива: ");
-// int n = Convert.ToInt32(Console.ReadLine());
-// int[,] peremesh = new int[m,n];
+Console.WriteLine("Введите число m для определения кол-ва строк двумерного массива: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число n для определения кол-ва столбцов двумерного массива: ");
+int n = Convert.ToInt32(Console.ReadLine());
+int[,] peremesh = new int[m,n];
 
 
-// void FillArray(int[,] matrix)
-// {
+void FillArray(int[,] matrix)
+{
+    for(int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for(int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i,j] = new Random().Next(1,100);
+        }
+    }
+}
+
+void PrintArray(int[,] matrix)
+{
+    for(int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for(int j = 0; j < matrix.GetLength(1); j++)
+        {
+            Console.Write($"{matrix[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+FillArray(peremesh);
+PrintArray(peremesh);
+// int[,] ChangeMatrix(int[,] matrix)
+// {   
+//     int[,] table = new int[matrix.GetLength(1),matrix.GetLength(0)];
 //     for(int i = 0; i < matrix.GetLength(0); i++)
 //     {
 //         for(int j = 0; j < matrix.GetLength(1); j++)
 //         {
-//             matrix[i,j] = new Random().Next(1,100);
+//             table[j,i] = matrix[i,j];
 //         }
 //     }
+//     return table;
 // }
 
-// void PrintArray(int[,] matrix)
-// {
-//     for(int i = 0; i < matrix.GetLength(0); i++)
-//     {
-//         for(int j = 0; j < matrix.GetLength(1); j++)
-//         {
-//             Console.Write($"{matrix[i,j]} ");
-//         }
-//         Console.WriteLine();
-//     }
-// }
-// FillArray(peremesh);
-// PrintArray(peremesh);
-// // int[,] ChangeMatrix(int[,] matrix)
-// // {   
-// //     int[,] table = new int[matrix.GetLength(1),matrix.GetLength(0)];
-// //     for(int i = 0; i < matrix.GetLength(0); i++)
-// //     {
-// //         for(int j = 0; j < matrix.GetLength(1); j++)
-// //         {
-// //             table[j,i] = matrix[i,j];
-// //         }
-// //     }
-// //     return table;
-// // }
+int temp = 0;
+for(int i = 0; i < m; i++)
+{
+    for(int j = 0; j < n; j++)
+    {
+        temp = peremesh[i,j];
+        peremesh[i,j] = peremesh[j,i];
+        peremesh[j,i] = temp;
+    }
 
-// int temp = 0;
-// for(int i = 0; i < m; i++)
-// {
-//     for(int j = 0; j < n; j++)
-//     {
-//         temp = peremesh[i,j];
-//         peremesh[i,j] = peremesh[j,i];
-//         peremesh[j,i] = temp;
-//     }
+}
+Console.WriteLine("First: ");
+PrintArray(peremesh);
+int[,] table = new int[peremesh.GetLength(1),peremesh.GetLength(0)];
+for(int i = 0; i < m; i++)
+{
+    for(int j = 0; j < n; j++)
+    {
+        table[i,j] = peremesh[j,i];
+    }
+}
 
-// }
-// Console.WriteLine("First: ");
-// PrintArray(peremesh);
-// int[,] table = new int[peremesh.GetLength(1),peremesh.GetLength(0)];
-// for(int i = 0; i < m; i++)
-// {
-//     for(int j = 0; j < n; j++)
-//     {
-//         table[i,j] = peremesh[j,i];
-//     }
-// }
-
-// Console.WriteLine("Second: ");
-// PrintArray(peremesh);
+Console.WriteLine("Second: ");
+PrintArray(table);
 
 
 // //Задача 59. 
